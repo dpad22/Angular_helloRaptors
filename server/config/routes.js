@@ -4,15 +4,15 @@ const raptors = require('../controllers/raptors.js')
 
 
 module.exports = function(app){
-    app.get("/raptorApi",raptors.index);
+    app.get("/raptorsApi",raptors.index);
 
-    app.get("/raptorApi/:id", raptors.findRaptor)
+    app.get("/raptorsApi/:id", raptors.findRaptor)
 
-    app.get("/raptorApi/:id",raptors.edit)
+    app.get("/raptorsApi/:id",raptors.edit)
 
-    app.post("/raptorApi",raptors.postNew)
+    app.post("/raptorsApi",raptors.postNew)
 
-    app.delete("/raptorApi/:id",raptors.delete)
+    app.delete("/raptorsApi/:id",raptors.delete)
 
 
     app.get('/raptors', (req,res)=>{

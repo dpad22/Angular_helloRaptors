@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ngFor="let raptor of raptors; let idx = index">
+                <tr *ngFor="let raptor of raptors">
                     <td>{{raptor.name}}</td>
                 </tr>
             </tbody>

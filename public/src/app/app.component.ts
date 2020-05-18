@@ -8,7 +8,7 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   title = 'Raptors API';
-  raptors = [];
+  raptors: any = [];
   raptor = "";
   newRaptor: any;
   editRaptor: any;
@@ -25,7 +25,8 @@ ngOnInit(){
 getRaptorsFromService(){
   let observable = this._httpService.getRaptors();
   observable.subscribe((data)=>{
-    this.raptors = data["data"];
+    // console.log(data)
+    this.raptors = data;
   });
 }
 createRaptor(){
