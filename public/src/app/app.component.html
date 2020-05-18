@@ -1,4 +1,37 @@
-{{ title }}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">{{title}}</h1>
+        <p class="lead">Choose your route.</p>
+        <hr class="my-4">
+        
+
+        <hr class="my-4">
+        <h4>Current Raptors</h4>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Raptor Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ngFor="let raptor of raptors; let idx = index">
+                    <td>{{raptor.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+</div>
 
 
 <router-outlet></router-outlet>

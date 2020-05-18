@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 
 
@@ -9,11 +9,28 @@ import { HttpClient } from '@angular/common/http'
 export class HttpService {
 
   constructor(private _http: HttpClient) { 
-    this.getRaptors()
+    this.getRaptors();
   }
 
 getRaptors(){
-  let tempObservable = this._http.get('/raptors')
-  tempObservable.subscribe(data => console.log('retrieved Raptors', data));
+  return this._http.get("/raptorsApi")
 }
+
+getRaptorsById(id: string) {
+  return this._http.get("/raptorsApi/:id");
+}
+
+newRaptor(newRaptor) {
+  return this._http.post("/raptorsApi", newRaptor);
+}
+
+editRaptor(raptor) {
+  return this._http.get("/raptorsApi/:id",raptor);
+
+}
+
+deleteRaptor(raptor){
+  return this._http.delete(`/raptorsApi/${raptor._id}`,raptor)
+}
+
 }

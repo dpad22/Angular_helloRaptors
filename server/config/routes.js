@@ -1,22 +1,29 @@
 // controllers go here
-const raptors = require('../controllers/raptors')
+const raptors = require('../controllers/raptors.js')
 
 
 
 module.exports = function(app){
-    app.get("/",(req, res)=>{
-        console.log("'/' route")
-        // raptors.index(req,res)
-    });
+    app.get("/raptorApi",raptors.index);
+
+    app.get("/raptorApi/:id", raptors.findRaptor)
+
+    app.get("/raptorApi/:id",raptors.edit)
+
+    app.post("/raptorApi",raptors.postNew)
+
+    app.delete("/raptorApi/:id",raptors.delete)
+
 
     app.get('/raptors', (req,res)=>{
         console.log('someone has asked for raptors')
         res.json([{name: 'alpha'},{name:'blue'}])
     })
 
-//     app.get("/home", (req,res)=>{
-//         raptors.home(req,res)
-//     });
+    // app.get("/home", (req,res)=>{
+    //     res.json()
+        // raptors.home(req,res)
+    // });
     
 //         // form page to enter new raptor
 //     app.get('/raptors/new', (req,res)=>{
