@@ -12,6 +12,7 @@ export class AppComponent {
   raptor = "";
   newRaptor: any;
   editRaptor: any;
+  clicked = false;
   editTog: boolean = false;
 
   constructor(private _httpService: HttpService){
@@ -19,8 +20,7 @@ export class AppComponent {
   }
   
 ngOnInit(){
-  this.getRaptorsFromService();
-  this.newRaptor = {name:"", age:0,sex:"", color:""};
+  console.log("We are live")
 }
 getRaptorsFromService(){
   let observable = this._httpService.getRaptors();
@@ -29,23 +29,29 @@ getRaptorsFromService(){
     this.raptors = data;
   });
 }
-createRaptor(){
-  let observable = this._httpService.newRaptor(this.newRaptor);
-  observable.subscribe((data)=> {
-    this.newRaptor = {name:"", age:0,sex:"", color:""};
-    this.getRaptorsFromService();
-  });
+raptorInfo(raptor){
+  this.raptor = raptor;
+  this.clicked = true;
 }
-onDelete(raptor) {
-  let observable = this._httpService.deleteRaptor(raptor);
-  observable.subscribe((data)=> {
-    this.getRaptorsFromService();
-  });
-}
-toEdit(raptor) {
-  let observable = this._httpService.editRaptor(raptor);
-  observable.subscribe((data)=> {
-    this.getRaptorsFromService();
-  });
-}
+
+// createRaptor(){
+//   let observable = this._httpService.newRaptor(this.newRaptor);
+//   observable.subscribe((data)=> {
+//     this.newRaptor = {name:"", age:0,sex:"", color:""};
+//     this.getRaptorsFromService();
+//   });
+// }
+// onDelete(raptor) {
+//   let observable = this._httpService.deleteRaptor(raptor);
+//   observable.subscribe((data)=> {
+//     this.getRaptorsFromService();
+//   });
+// }
+// toEdit(raptor) {
+//   let observable = this._httpService.editRaptor(raptor);
+//   observable.subscribe((data)=> {
+//     this.getRaptorsFromService();
+//   });
+// }
+
 }

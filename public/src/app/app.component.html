@@ -6,29 +6,38 @@
         <h1 class="display-4">{{title}}</h1>
         <p class="lead">Choose your route.</p>
         <hr class="my-4">
-        
-
-        <hr class="my-4">
         <h4>Current Raptors</h4>
+        <button (click)="getRaptorsFromService()">View All Raptors</button>
         
         <table class="table">
             <thead>
                 <tr>
                     <th>Raptor Name</th>
+                    <th>Raptor Color</th>
+                    <th>Raptor Age</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let raptor of raptors">
                     <td>{{raptor.name}}</td>
+                    <td>{{raptor.age}}</td>
+                    <td>{{raptor.color}}</td>
+                    <button (click)="raptorInfo(raptor)">Show Raptor</button>
                 </tr>
             </tbody>
         </table>
 
     </div>
 
+    <div class="container" *ngIf="clicked">
+        <h3>{{raptor.name}}</h3>
+        <ul>
+            <li>Sex: {{raptor.sex}}</li>
+            <li>Age: {{raptor.age}}</li>
+            <li>Color: {{raptor.color}}</li>
+        </ul>
 
-
-
+    </div>
 
 
 </div>
