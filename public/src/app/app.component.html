@@ -1,13 +1,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
 <div class="container">
     <div class="jumbotron">
         <h1 class="display-4">{{title}}</h1>
         <p class="lead">Choose your route.</p>
         <hr class="my-4">
+
         <h4>Current Raptors</h4>
         <button (click)="getRaptorsFromService()">View All Raptors</button>
+        <button (click)="createRaptor()">Create New Raptor</button>
         
         <table class="table">
             <thead>
@@ -23,23 +24,49 @@
                     <td>{{raptor.age}}</td>
                     <td>{{raptor.color}}</td>
                     <button (click)="raptorInfo(raptor)">Show Raptor</button>
+                    <button (click)="editForm(raptor)">Edit Raptor</button>
+                    <button (click)="onDelete(raptor)">Delete Raptor</button>
                 </tr>
             </tbody>
         </table>
 
     </div>
 
-    <div class="container" *ngIf="clicked">
+    <div class="container" *ngIf="showClicked">
         <h3>{{raptor.name}}</h3>
         <ul>
+            <li>id: {{raptor._id}}</li>
             <li>Sex: {{raptor.sex}}</li>
             <li>Age: {{raptor.age}}</li>
             <li>Color: {{raptor.color}}</li>
         </ul>
 
     </div>
+    <div class="formDiv" *ngIf="newClicked">
+        <h2>Create New Raptor</h2>
+        <form (submit)="createRaptor()">
+            <p>{{newRaptor | json}}</p>
+            <p>Name: <input type="text" name="newRaptor.name"[(ngModel)]="newRaptor.name"> </p>
+            <p>Age: <input type="number" name="newRaptor.age" [(ngModel)]="newRaptor.age"></p>
+            <p>Sex: <input type="text" name="newRaptor.sex" [(ngModel)]="newRaptor.sex"></p>
+            <p>Color: <input type="text" name="newRaptor.color" [(ngModel)]="newRaptor.color"></p>
+            <input type="submit" class="Create New Raptor">
 
+        </form>
+    
+    </div>
+    <div class="formDiv" *ngIf="editTog">
+        <h2>Update Raptor</h2>
+        <form (submit)="toEdit()">
+            <p> {{editRaptor | json}}</p>
+            <p>Name: <input type="text" name="editRaptor.name"[(ngModel)]="editRaptor.name"> </p>
+            <p>Age: <input type="number" name="editRaptor.age" [(ngModel)]="editRaptor.age"></p>
+            <p>Sex: <input type="text" name="editRaptor.sex" [(ngModel)]="editRaptor.sex"></p>
+            <p>Color: <input type="text" name="editRaptor.color" [(ngModel)]="editRaptor.color"></p>
+            <input type="submit" class="Update Raptor">
 
+        </form>
+    </div> 
 </div>
 
 

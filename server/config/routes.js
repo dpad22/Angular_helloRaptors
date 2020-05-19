@@ -6,19 +6,23 @@ const raptors = require('../controllers/raptors.js')
 module.exports = function(app){
     app.get("/raptorsApi",raptors.index);
 
-    app.get("/raptorsApi/:id", raptors.findRaptor)
+    app.get("/raptorsApi/:_id", raptors.findRaptor)
 
-    app.get("/raptorsApi/:id",raptors.edit)
+    app.put("/raptorsApi/:_id", (req,res) => {
+        raptors.editRaptor (req, res)
+    });
 
     app.post("/raptorsApi",raptors.postNew)
 
-    app.delete("/raptorsApi/:id",raptors.delete)
+    app.delete("/raptorsApi/:_id",(req,res) =>{
+        raptors.deleteRaptor(req,res)
+    });
 
 
-    app.get('/raptors', (req,res)=>{
-        console.log('someone has asked for raptors')
-        res.json([{name: 'alpha'},{name:'blue'}])
-    })
+    // app.get('/raptors', (req,res)=>{
+    //     console.log('someone has asked for raptors')
+    //     res.json([{name: 'alpha'},{name:'blue'}])
+    // })
 
     // app.get("/home", (req,res)=>{
     //     res.json()

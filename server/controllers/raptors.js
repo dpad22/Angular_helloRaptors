@@ -30,7 +30,7 @@ module.exports = {
             })
     },
 
-    delete: (req,res)=>{
+    deleteRaptor: (req,res)=>{
         Raptor.remove({_id:req.params.id})
         err => {
             if (err){
@@ -38,19 +38,27 @@ module.exports = {
             });
 
             }else{
-                res.json({message: "Delete Succcessful",added: true
+                res.json({message: "Delete Succcessful",removed: true
                 });
             }
         }
     },
 
-    edit: (req,res)=>{
+    editRaptor: (req,res)=>{
         Raptor.findOne({_id:req.params.id})
         .then(raptors => {
             res.json(raptors)
             })
             .catch(err=>{
                 res.json(err)
+        })
+        raptor.save(err, (err)=>{
+            if(err){
+                res.json({message: "Error", error:err});
+            }
+            else{
+                res.json({message: "Success!", raptors: raptors})
+            }
         })
     },
 

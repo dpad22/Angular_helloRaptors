@@ -24,8 +24,8 @@ newRaptor(newRaptor) {
   return this._http.post("/raptorsApi", newRaptor);
 }
 
-editRaptor(raptor) {
-  return this._http.get("/raptorsApi/:id",raptor);
+editRaptor(editRaptor) {
+  return this._http.put(`/raptorsApi/${editRaptor._id}`,editRaptor);
 
 }
 
