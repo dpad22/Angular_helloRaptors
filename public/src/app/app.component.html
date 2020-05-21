@@ -25,7 +25,7 @@
                     <td>{{raptor.color}}</td>
                     <button (click)="raptorInfo(raptor)">Show Raptor</button>
                     <button (click)="editForm(raptor)">Edit Raptor</button>
-                    <button (click)="onDelete(raptor._id)">Delete Raptor</button>
+                    <button (click)="onDelete(raptor)">Delete Raptor</button>
                 </tr>
             </tbody>
         </table>
@@ -46,10 +46,10 @@
         <h2>Create New Raptor</h2>
         <form (submit)="createRaptor()">
             <p>{{newRaptor | json}}</p>
-            <p>Name: <input type="text" name="newRaptor.name"[(ngModel)]="newRaptor.name"> </p>
-            <p>Age: <input type="number" name="newRaptor.age" [(ngModel)]="newRaptor.age"></p>
-            <p>Sex: <input type="text" name="newRaptor.sex" [(ngModel)]="newRaptor.sex"></p>
-            <p>Color: <input type="text" name="newRaptor.color" [(ngModel)]="newRaptor.color"></p>
+            <p>Name: <input type="text" name="name"[(ngModel)]="newRaptor.name"> </p>
+            <p>Age: <input type="number" name="age" [(ngModel)]="newRaptor.age"></p>
+            <p>Sex: <input type="text" name="sex" [(ngModel)]="newRaptor.sex"></p>
+            <p>Color: <input type="text" name="color" [(ngModel)]="newRaptor.color"></p>
             <input type="submit" class="Create New Raptor">
 
         </form>
@@ -59,10 +59,10 @@
         <h2>Update Raptor</h2>
         <form (submit)="toEdit()">
             <p> {{editRaptor | json}}</p>
-            <p>Name: <input type="text" name="editRaptor.name"[(ngModel)]="editRaptor.name"> </p>
-            <p>Age: <input type="number" name="editRaptor.age" [(ngModel)]="editRaptor.age"></p>
-            <p>Sex: <input type="text" name="editRaptor.sex" [(ngModel)]="editRaptor.sex"></p>
-            <p>Color: <input type="text" name="editRaptor.color" [(ngModel)]="editRaptor.color"></p>
+            <p>Name: <input type="text" name="name"[(ngModel)]="editRaptor.name"> </p>
+            <p>Age: <input type="number" name="age" [(ngModel)]="editRaptor.age"></p>
+            <p>Sex: <input type="text" name="sex" [(ngModel)]="editRaptor.sex"></p>
+            <p>Color: <input type="text" name="color" [(ngModel)]="editRaptor.color"></p>
             <input type="submit" class="Update Raptor">
 
         </form>

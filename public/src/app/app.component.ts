@@ -17,6 +17,7 @@ export class AppComponent {
   newClicked = false;
   editClicked = false;
   editTog: boolean = false;
+  
 
   constructor(private _httpService: HttpService){
 
@@ -46,13 +47,14 @@ createRaptor(){
     // this.getRaptorsFromService();
   });
 }
-onDelete(raptor) {
+onDelete(id:any) {
   console.log("deleting below")
-  console.log(this.raptor)
-  let observable = this._httpService.deleteRaptor(raptor);
-  observable.subscribe((data)=> {
-    console.log("deleting Raptor")
-    // this.getRaptorsFromService();
+  console.log(id)
+  let observable = this._httpService.deleteRaptor(id._id);
+  observable.subscribe(data => {
+    // console.log("delete", data)
+    this.getRaptorsFromService();
+    console.log("deleting Raptor");
   });
 }
 
@@ -65,15 +67,11 @@ editForm(raptor){
   this.editTog = true;
 }
 
-toEdit() {
-  console.log(this.editRaptor.name)
-  console.log(this.editRaptor)
-  console.log("Above observable")
-  let observable = this._httpService.editRaptor(this.editRaptor);
+toEdit(_id) {
+  let observable = this._httpService.editRaptor(this.editRaptor,_id);
   observable.subscribe((data) => {
     this.editTog = false;
-  console.log("after observable")
-  console.log(this.editRaptor.name)
+    this.getRaptorsFromService();
   console.log("Submitted edit");
 });
 

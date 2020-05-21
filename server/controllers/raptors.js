@@ -30,45 +30,51 @@ module.exports = {
             })
     },
 
-    deleteRaptor: (req,res)=>{
-        Raptor.deleteOne({_id:req.params.id})
-        .then(()=>{
-            res.json({message: "Success!",removed:true})
-        })
-        .catch(err=>{
-            console.log('Error eliminating raptor:', err)
-            res.json({message: "Error", error: err})
-        })
-    },
-        
-    editRaptor: (req,res)=>{
-        Raptor.findOne({_id:req.params.id})
-        .then(raptor =>{
-            raptor.name = req.body.name
-            raptor.age = req.body.age
-            raptor.sex = req.body.sex
-            raptor.color = req.body.color
-            raptor.save()
-                .then(editRaptor =>{
-                    res.json(editRaptor)
-                })
-            })
-        .catch(err=>{
-            console.log('Error saving raptor', err)
-        })
-    },
-
     findRaptor: (req,res)=>{
         Raptor.findOne({_id:req.params.id})
-        .then(raptors =>{
-            console.log(raptors)
-            res.json(raptors)
-        })
-        .catch(err=>{
-            res.json(err)
-        })
+            .then(raptors =>{
+                console.log(raptors)
+                res.json(raptors)
+            })
+            .catch(err=>{
+                res.json(err)
+            })
+        },
+
+    deleteRaptor: (req,res)=>{
+        console.log("params",req.params)
+        Raptor.deleteOne({_id:req.params._id})
+            .then(deletedRaptor => {
+                res.json(deletedRaptor)
+            })
+            .catch(err=>{
+                console.log('Error eliminating raptor:', err)
+                res.json(err)
+            })
+        },
+        
+    editRaptor: (req,res)=>{
+        console.log("params",req.params)
+        console.log(req.body)
+        Raptor.findOne({_id:req.params._id})
+            .then(raptor => {
+                console.log(raptor)
+                raptor.name = req.body.name
+                raptor.age = req.body.age
+                raptor.sex = req.body.sex
+                raptor.color = req.body.color
+                raptor.save()
+                    .then(editRaptor =>{
+                        res.json(editRaptor)
+                    })
+                })
+            .catch(err=>{
+                console.log('Error saving raptor', err)
+            })
+        }
     }
-}
+
+    
 
 
 // editRaptor: (req,res)=>{

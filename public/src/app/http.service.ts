@@ -24,13 +24,13 @@ newRaptor(newRaptor) {
   return this._http.post("/raptorsApi", newRaptor);
 }
 
-editRaptor(editRaptor) {
+editRaptor(editRaptor, _id) {
   return this._http.put(`/raptorsApi/${editRaptor._id}`, editRaptor)
 
 }
 
-deleteRaptor(id: string){
-  return this._http.delete("/raptorsApi/:id")
+deleteRaptor(id){
+  return this._http.delete("/raptorsApi/" + id)
 }
 
 }
