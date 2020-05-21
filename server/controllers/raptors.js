@@ -31,34 +31,30 @@ module.exports = {
     },
 
     deleteRaptor: (req,res)=>{
-        Raptor.remove({_id:req.params.id})
-        err => {
-            if (err){
-                res.json({message: "Error", error: err
-            });
-
-            }else{
-                res.json({message: "Delete Succcessful",removed: true
-                });
-            }
-        }
+        Raptor.deleteOne({_id:req.params.id})
+        .then(()=>{
+            res.json({message: "Success!",removed:true})
+        })
+        .catch(err=>{
+            console.log('Error eliminating raptor:', err)
+            res.json({message: "Error", error: err})
+        })
     },
-
+        
     editRaptor: (req,res)=>{
         Raptor.findOne({_id:req.params.id})
-        .then(raptors => {
-            res.json(raptors)
+        .then(raptor =>{
+            raptor.name = req.body.name
+            raptor.age = req.body.age
+            raptor.sex = req.body.sex
+            raptor.color = req.body.color
+            raptor.save()
+                .then(editRaptor =>{
+                    res.json(editRaptor)
+                })
             })
-            .catch(err=>{
-                res.json(err)
-        })
-        raptor.save(err, (err)=>{
-            if(err){
-                res.json({message: "Error", error:err});
-            }
-            else{
-                res.json({message: "Success!", raptors: raptors})
-            }
+        .catch(err=>{
+            console.log('Error saving raptor', err)
         })
     },
 
@@ -73,3 +69,35 @@ module.exports = {
         })
     }
 }
+
+
+// editRaptor: (req,res)=>{
+    //     let id = req.params.id;
+    //     Raptor.findById(id, function (err,raptor_data){
+    //         if (err){
+    //             res.json({message: "error!", error: err});
+    //         }
+    //         else{
+    //             if(req.body.name){
+    //                 raptor_data.name = req.body.name;
+    //             }
+    //             if(req.body.age){
+    //                 raptor_data.age = req.body.age;
+    //             }
+    //             if(req.body.sex){
+    //                 raptor_data.sex = req.body.sex;
+    //             }
+    //             if(req.body.color){
+    //                 raptor_data.color = req.body.color;
+    //             }
+    //             raptor_data.save(function (err){
+    //                 if(err) {
+    //                     res.json({message: "error!", error: err});
+    //                 }
+    //                 else{
+    //                     res.json({message: "Success!", raptor_data: raptor_data})
+    //                 }
+    //             })
+    //         }
+    //     })
+    // }

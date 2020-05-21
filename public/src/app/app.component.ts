@@ -47,25 +47,35 @@ createRaptor(){
   });
 }
 onDelete(raptor) {
+  console.log("deleting below")
+  console.log(this.raptor)
   let observable = this._httpService.deleteRaptor(raptor);
   observable.subscribe((data)=> {
     console.log("deleting Raptor")
-    this.getRaptorsFromService();
+    // this.getRaptorsFromService();
   });
 }
 
 editForm(raptor){
   this.editRaptor = {_id: raptor._id, name: raptor.name, age: raptor.age, sex: raptor.sex, color: raptor.color}
+  console.log("*************")
+  console.log(raptor.name)
+  console.log(raptor._id)
+  console.log("*************")
   this.editTog = true;
 }
 
 toEdit() {
+  console.log(this.editRaptor.name)
+  console.log(this.editRaptor)
+  console.log("Above observable")
   let observable = this._httpService.editRaptor(this.editRaptor);
-  observable.subscribe(data=> {
-  this.editTog = false;
-  this.getRaptorsFromService();
+  observable.subscribe((data) => {
+    this.editTog = false;
+  console.log("after observable")
+  console.log(this.editRaptor.name)
   console.log("Submitted edit");
-})
+});
 
 }
 
